@@ -47,9 +47,10 @@ user_id int,
 delivary_user_id int ,
 store_id int,
 product_id int,
-price varchar(255),
+price LONGTEXT NULL DEFAULT NULL ;,
 product_name varchar(255),
 quantity int,
+is_done BIT NOT NULL DEFAULT 0,
 is_deleted BIT NOT NULL DEFAULT 0,
 PRIMARY KEY (orders_id),
 );
@@ -75,13 +76,9 @@ phone_number varchar(255),
 email varchar(255) UNIQUE,
 password varchar(255),
 image_profile varchar(255),
-payment_id int,
 role_id int ,
-store_id int ,
 is_deleted TINYINT DEFAULT 0,
 PRIMARY KEY (user_id),
-FOREIGN KEY (payment_id) REFERENCES payment (payment_id),
-FOREIGN KEY (store_id) REFERENCES store (store_id),
 FOREIGN KEY (role_id) REFERENCES roles (role_id)
  );
  
@@ -96,3 +93,14 @@ PRIMARY KEY (payment_id)
 FOREIGN KEY (user_id) REFERENCES users(user_id),
 
 )
+//*************************************************/
+ CREATE TABLE check_out (
+ check_out_id int auto_increment NOT NULL,
+ user_id  int,
+ orders_id int,
+ delivary_user_id int,
+ is_deleted TINYINT DEFAULT 0,
+ PRIMARY KEY (check_out_id),
+ FOREIGN KEY (user_id) REFERENCES users (user_id),
+ FOREIGN KEY (orders_id) REFERENCES orders (orders_id)
+ )

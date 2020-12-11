@@ -55,12 +55,26 @@ const Content = ({ close, ...props }) => {
     axios
       .post("http://localhost:5000/order", data)
       .then((response) => {
+        createCheckOut()
         getOrders();
       })
       .catch((error) => {
         throw error;
       });
   };
+
+const createCheckOut=()=>{
+  const user = jwt_decode(localStorage.getItem("token"));
+
+  axios
+      .get(`http://localhost:5000/createcheckout/${user.user_id}`)
+      .then((response) => {
+      })
+      .catch((error) => {
+        throw error;
+      });
+}
+
 
   const getOrders = () => {
     const user = jwt_decode(localStorage.getItem("token"));

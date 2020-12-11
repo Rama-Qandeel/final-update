@@ -24,7 +24,7 @@ const Login = (props) => {
       .then((response) => {
         if (response.data) {
           localStorage.setItem("token", response.data);
-          props.history.push("/home");
+          props.history.push("/");
         }
       })
       .catch((error) => {

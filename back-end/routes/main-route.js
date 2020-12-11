@@ -52,6 +52,11 @@ const {
   getItems
 } = require("../controllers/item");
 
+const {
+  checkOut,
+  createCheckOut,
+  getLastOrder
+} = require("../controllers/checkOut");
 /***********product*********** */
 mainRouter.post("/product", addProduct);
 mainRouter.get("/getsearch", searchProduct);
@@ -88,6 +93,12 @@ mainRouter.get("/delvarymanOrders/:delivary_user_id", getDelevarymanOrders);
 mainRouter.put("/order", updateOrder);
 mainRouter.get("/getorder/:user_id", getOrders);
 mainRouter.delete("/order/:orders_id", deleteOrder);
+
+
+//***********checkOut***** */
+mainRouter.get("/checkout/:user_id",checkOut);
+mainRouter.get("/createcheckout/:user_id",createCheckOut);
+mainRouter.get("/getlastorder/:user_id",getLastOrder);
 
 /***********user*********** */
 mainRouter.post("/register", register);

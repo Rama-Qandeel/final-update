@@ -121,6 +121,8 @@ const getDelevarymanOrders = (req, res) => {
         users.last_name,orders.store_id ,store.store_name , orders.product_name FROM orders 
      INNER JOIN users ON orders.delivary_user_id=users.user_id 
     INNER JOIN store ON orders.store_id=store.store_id  
+    INNER JOIN orders ON orders.store_id=store.store_id  
+
     WHERE orders.delivary_user_id =?`
     const data = [req.params.delivary_user_id]
     connection.query(query, data, (err, results) => {
@@ -154,8 +156,12 @@ const deleteOrder = (req, res) => {
     })
 } 
 
+
+
+
 module.exports={
     createOrder, getOrders, updateOrder, deleteOrder,
       getDelevarymanOrders, ordersAndStore
     , ordersAndUsers, cancelOrder, assigneeOrder, getUnassignedOrders, getUnassignedOrdersUser
+
 }
