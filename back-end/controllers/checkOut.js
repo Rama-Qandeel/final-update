@@ -8,7 +8,7 @@ const checkOut = (req, res) => {
     users.last_name
     FROM check_out 
    INNER JOIN users ON (check_out.user_id)=users.user_id 
-   WHERE check_out.user_id =?`
+   WHERE check_out.user_id =? `
     const data = [req.params.user_id]
     connection.query(query, data, (err, results) => {
         if (err) {
@@ -93,4 +93,15 @@ const getLastOrder = (req, res) => {
     })
 }
  
-module.exports={checkOut,createCheckOut,getLastOrder}
+const getOrderstocheck = (req, res) => {
+    const query = `SELECT * from orders WHERE user_id=? AND is_deleted=0`
+    const data = [req.params.user_id]
+    connection.query(query, data, (err, results) => {
+        if (err) {
+            throw err   
+        }
+        res.json(results)
+    })
+}
+
+module.exports={checkOut,createCheckOut,getLastOrder,getOrderstocheck}

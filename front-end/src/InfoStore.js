@@ -7,9 +7,7 @@ const InfoStore = (props) => {
   const [products, setProducts] = useState([]);
   const [searchProduct, setSearchProduct] = useState("");
 
-  useEffect(() => {
-    getproducts();
-  }, []);
+  
 
   const getproducts = () => {
     let data = { store_id: props.location.state.store_id };
@@ -41,8 +39,13 @@ const InfoStore = (props) => {
     getproducts();
   };
   const chooseStore = () => {
-    props.history.push("/home");
+    props.history.push("/");
   };
+
+  useEffect(() => {
+    getproducts();
+  }, []);
+
   const renderProducts = products.map((product) => <Product data={product} />);
 
   return (

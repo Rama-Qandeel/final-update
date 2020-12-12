@@ -12,6 +12,7 @@ import Cart from "./components/Cart";
 import CSTprofile from './CSTprofile';
 import StoreProfile from './StoreProfile';
 import DelivaryProfile from './DelivaryProfile';
+import Check from "./components/Check";
 
 
 const App = () => {
@@ -29,7 +30,7 @@ const App = () => {
   
   return (
     <Router>
-      {/* <Header/> */}
+    
       <Route path="/login" render={(props) => <Login {...props} />} />
       <Route path="/register" render={(props) => <Register {...props} />} />
       <Route exact path="/" render={(props) =>
@@ -89,6 +90,16 @@ const App = () => {
           path="/store/:id"
           render={(props) => <StoreProfile {...props} />}
         />
+        <Route
+        
+        path="/checkout"
+        render={(props) =>
+          <div>
+         <Header2 {...props} />
+         <Check {...props} />
+          </div>
+          }
+      />
       
     </Router>
   );

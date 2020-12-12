@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {Link} from "react-router-dom"
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 const Cart = (props) => {
@@ -111,10 +112,20 @@ const Cart = (props) => {
   return (
     <div>
       {render}
-      <button>
+      <Link
+      className="link"
+      to={{
+        pathname: `/checkout`,
+        state:sum
+      }}
+      style={{ textDecoration: "none" }}
+    >
+    <button  >
         Go to checkout
         <input type="text" value={sum} />
       </button>
+    </Link>
+      
     </div>
   );
 };

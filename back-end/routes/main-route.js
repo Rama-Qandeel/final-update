@@ -55,7 +55,8 @@ const {
 const {
   checkOut,
   createCheckOut,
-  getLastOrder
+  getLastOrder,
+  getOrderstocheck
 } = require("../controllers/checkOut");
 /***********product*********** */
 mainRouter.post("/product", addProduct);
@@ -99,6 +100,7 @@ mainRouter.delete("/order/:orders_id", deleteOrder);
 mainRouter.get("/checkout/:user_id",checkOut);
 mainRouter.get("/createcheckout/:user_id",createCheckOut);
 mainRouter.get("/getlastorder/:user_id",getLastOrder);
+mainRouter.get("/getOrderstocheck/:user_id",getOrderstocheck);
 
 /***********user*********** */
 mainRouter.post("/register", register);

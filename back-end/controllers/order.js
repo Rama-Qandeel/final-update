@@ -113,7 +113,7 @@ const ordersAndStore = (req, res) => {
         }
         res.json(results)
     })
-}
+} 
 
 const getDelevarymanOrders = (req, res) => {
     const query =
@@ -121,16 +121,15 @@ const getDelevarymanOrders = (req, res) => {
         users.last_name,orders.store_id ,store.store_name , orders.product_name FROM orders 
      INNER JOIN users ON orders.delivary_user_id=users.user_id 
     INNER JOIN store ON orders.store_id=store.store_id  
-    INNER JOIN orders ON orders.store_id=store.store_id  
 
     WHERE orders.delivary_user_id =?`
     const data = [req.params.delivary_user_id]
     connection.query(query, data, (err, results) => {
         if (err) {
-            throw err;
+            throw err;   
         }
         res.json(results)
-    })
+    })  
 }
 
 const updateOrder = (req, res) => {
@@ -155,7 +154,6 @@ const deleteOrder = (req, res) => {
         res.json(results)
     })
 } 
-
 
 
 
