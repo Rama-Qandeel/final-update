@@ -6,10 +6,11 @@ import Popup from "reactjs-popup";
 
 const Check =(props)=> {
  const[checkOut,setCheckOut] =useState([]) 
- const[payment,setPayment] =useState("") 
+
  const[orders,setOrders] =useState([]) 
 const [show,setShow]=useState(false)
-    
+const[id,setid] =useState("") 
+ 
     useEffect(() => {
         CheckOut();
       }, []);   
@@ -21,9 +22,6 @@ const [show,setShow]=useState(false)
       setShow(false)
     }
 
-
-
-    
     const CheckOut=()=>{
         const user = jwt_decode(localStorage.getItem("token"));
         axios
@@ -54,9 +52,6 @@ const [show,setShow]=useState(false)
      
     return    <div>
              <p>Number of order: {ele.check_out_id}</p>
-                    <p>Name delivary man:{ele.first_name} {ele.last_name}</p>
-                     
-       
             </div>
                     })
                    
@@ -80,19 +75,7 @@ const [show,setShow]=useState(false)
                         </div>
                       );
                     });
-                  
-                    const handleChange = (event) => {
-                      if (event.target.name === "cash") {
-                        setPayment("cash");
-                      }
-                      if (event.target.name === "Card") {
-                        setPayment("card");  }
-                    }
-
-
-
-
-
+     
     return (
             <div style={{ textAlign:"center" }}>
                 <h2>Order Summary</h2>
@@ -106,29 +89,22 @@ const [show,setShow]=useState(false)
               {renderOrder}
               </div>):(null)}
              
-             <input type="checkbox" 
-              name="cash"
-               value={payment}
-               onChange={handleChange}
-              />
-             <label for="cash"> Cash on delivery</label>
+             
              <Popup modal trigger={
                <div  style={{ width:"30%", textAlign:"center"
                ,marginLeft:"350px"
                }}>
-                 <input type="checkbox"
-               name="Card"
-                value={payment}
-                onChange={handleChange}
-                />
-   <label for="card"> Add Credit Card</label>
+                
+   
 
-       </div> }>
-        {close => <Payment  close={close}/>}
+      <div> <button> Choose a payment method</button></div>
+      </div> 
+      }>
+        {close => <Payment  close={close} data={checkOut}/>}
         </Popup>
              
              
-            <div> <button> Choose a payment method</button></div>
+            {/* <div> <button> Choose a payment method</button></div> */}
             <div>
               Done? Complete your order 
               <button>Confirm Order</button>
@@ -137,6 +113,5 @@ const [show,setShow]=useState(false)
           
         )
     }
-
 
 export default Check;

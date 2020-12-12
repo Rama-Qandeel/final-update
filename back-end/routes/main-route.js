@@ -58,6 +58,10 @@ const {
   getLastOrder,
   getOrderstocheck
 } = require("../controllers/checkOut");
+
+const {
+  addpayment
+} = require("../controllers/payment");
 /***********product*********** */
 mainRouter.post("/product", addProduct);
 mainRouter.get("/getsearch", searchProduct);
@@ -95,7 +99,6 @@ mainRouter.put("/order", updateOrder);
 mainRouter.get("/getorder/:user_id", getOrders);
 mainRouter.delete("/order/:orders_id", deleteOrder);
 
-
 //***********checkOut***** */
 mainRouter.get("/checkout/:user_id",checkOut);
 mainRouter.get("/createcheckout/:user_id",createCheckOut);
@@ -107,6 +110,9 @@ mainRouter.post("/register", register);
 mainRouter.post("/login", login);
 mainRouter.get("/users", getAllUsers);
 mainRouter.get("/users/:user_id", getUserById);
+
+/***********extra*********** */
+mainRouter.post("/payment", addpayment);
 
 /***********extra*********** */
 mainRouter.post('/item', createItem);

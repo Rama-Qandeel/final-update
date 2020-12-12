@@ -16,6 +16,14 @@ const Header = (props) => {
     }
   }, []);
 
+const clearlocal=()=>{
+  localStorage.clear();
+}
+
+
+
+
+
   return (
     <div className="container2">
       <nav className=" navheader">
@@ -41,6 +49,7 @@ const Header = (props) => {
               <div id="select">
                 <a href="/Account">My Account</a>
                 <a href="/delevaryman">My delevaryman Account</a>
+                
                 {add ? (
                   <div>
                     {" "}
@@ -50,9 +59,10 @@ const Header = (props) => {
                     <Popup modal trigger={<a>Add Product</a>}>
                       {(close) => <AddProduct close={close} {...props} />}
                     </Popup>
+                    <a href="/" onClick={()=>localStorage.clear()}>Log Out </a>
                   </div>
                 ) : (
-                  <a>Log Out </a>
+                  <a href="/" onClick={()=>localStorage.clear()}>Log Out </a>
                 )}
               </div>
             </li>

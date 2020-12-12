@@ -28,7 +28,11 @@ const Content = ({ close, ...props }) => {
   const addToCart = () => {
     const user = jwt_decode(localStorage.getItem("token"));
     let data = {};
+
     if (Number(discount_available)) {
+      console.log('rrrrrrrrrrr',Number(discount_available));
+
+
       data = {
         user_id: user.user_id,
         delivary_user_id: 0,
@@ -129,7 +133,7 @@ const createCheckOut=()=>{
     const user = jwt_decode(localStorage.getItem("token"));
     let data = {
       quantity: updatequantity,
-      price: (Number(unit_price) - Number(discount_available)) * updatequantity,
+      price: (Number(unit_price) -Number(discount_available)) * updatequantity,
       product_id: product_id,
       user_id: user.user_id,
     };
@@ -156,7 +160,7 @@ const createCheckOut=()=>{
           <p>{product_descripition}</p>
           {Number(discount_available) ? (
             <div>
-              <h3 style={{ color: "red" }}>{discount_available} off</h3>
+              <h3 style={{ color: "red" }}>-{discount_available} off</h3>
               <spam style={{ textDecoration: "line-through" }}>
                 {unit_price}
                 {quantity_per_unit}

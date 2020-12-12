@@ -87,12 +87,16 @@ payment_id int auto_increment NOT NULL,
 user_id int,
 payment_type varchar(255),
 credit_card varchar(255),
-credit_card_type varchar(255),
+expiration varchar(255),
+cvv varchar(255),
+check_out_id int,
+user_id int,
 is_deleted tinyint default 0,
 PRIMARY KEY (payment_id)
-FOREIGN KEY (user_id) REFERENCES users(user_id),
-
+FOREIGN KEY (user_id) REFERENCES users (user_id),
+ FOREIGN KEY (check_out_id) REFERENCES check_out (check_out_id)
 )
+
 //*************************************************/
  CREATE TABLE check_out (
  check_out_id int auto_increment NOT NULL,

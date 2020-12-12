@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 const Login = (props) => {
   const [email, setEmail] = useState("");
@@ -24,7 +25,8 @@ const Login = (props) => {
       .then((response) => {
         if (response.data) {
           localStorage.setItem("token", response.data);
-          props.history.push("/");
+        props.history.push("/");
+
         }
       })
       .catch((error) => {
@@ -32,6 +34,7 @@ const Login = (props) => {
           alert("Invalid User");
         }
       });
+  
   };
 
   return (
@@ -58,7 +61,9 @@ const Login = (props) => {
           required
         />
       </div>
+    
       <button onClick={handleSubmit}>Login</button>
+    
     </div>
   );
 };

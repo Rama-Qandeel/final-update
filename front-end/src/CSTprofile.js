@@ -173,7 +173,7 @@ const CSTprofile = (props) => {
       >
         d
       </button>
-      <Link to={{ pathname: `/store/${e.store_id}` }}>
+        <a href={`/store/${e.store_id}`}>
         <div
           onClick={() => {
             setStoreId(e.store_id);
@@ -190,7 +190,7 @@ const CSTprofile = (props) => {
             ></img>{" "}
           </div>
         </div>
-      </Link>
+        </a>
     </li>
   ));
   useEffect(() => {
