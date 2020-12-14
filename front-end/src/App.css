@@ -3,8 +3,18 @@
 }
 
 body {
-  font-family: "Courier New", Courier, monospace;
-  margin: 0;
+  font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;;
+  font-size: 14px;
+    line-height: 1.42857143;
+    color: #424242;
+    color: var(--dark-grey);
+    padding: 0;
+    margin: 0;
+    background: #f2f2f2;
+    background: var(--smoky-color);
+    overflow-x: hidden;
+    font-weight: 400;
+    text-align: left;
 }
 
 .register-container2,
@@ -23,7 +33,15 @@ body {
   margin: 1rem;
   width: 50px;
   min-width: 300px;
-  cursor: pointer;/**************/
+  cursor: pointer; 
+  /* min-height: 100vh;
+  display: flex;
+  flex-direction: column; */
+  background-color: #fff;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1 0 auto;
 }
 
 .store:hover {
@@ -65,9 +83,9 @@ body {
 
 .store-category {
   background-color: rgb(241, 213, 213);
-}
+} */
 /****************************************/
-.modal {
+ .modal {
   font-size: 12px;
   background-color:rgb(248, 248, 248);
   width: 100%;
@@ -95,23 +113,44 @@ text-align: center;
 .modal .content2 {
   width: 100%;
   padding: 10px 5px;
-  
- 
 }
 
-.modal .close2 ,.modaladd .close2{
+
+.popupr {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width:100%;
+  position: relative;
+ margin-top: 0;
+ margin-bottom: 100px;
+
+}
+.popupr .header2{
+  margin-bottom: 100px;
+  font-size: 40px;
+}
+.popupr .header2 img{
+  display: block;
+  background-color: rgb(60, 12, 172);
+}
+.modal-body .close2 ,.modaladd .close2{
+ 
   cursor: pointer;
   position: absolute;
-  display: block;
-  padding: 2px 5px;
-  line-height: 20px;
-  right: -29px;
-  top: -10px;
-  font-size: 24px;
-  background: #ffffff;
-  border-radius: 18px;
-  border: 1px solid #cfcece;
+  top: -30px;
+  right: -830px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: rgb(245, 239, 239);
 }
+.popupr .close2:hover {
+  color: #06D85F;
+}
+
 .pPic{ max-width: 360px;height:250px;  border: 8px solid rgba(21, 7, 61, 0.452);
   border-radius: 300px; }
   .mPic{ max-width: 250px;height:250px;  border:8px solid rgba(21, 7, 61, 0.452);
@@ -143,9 +182,10 @@ text-align: center;
 
 }
 
-.info-popup2 {
+.popupr .header2 .info-popup2 {
  margin-left: 10px;
   float: right;
+  
 }
 .order{
   border:2px solid red;
@@ -173,7 +213,7 @@ list-style-type: none;
 nav li a{
   display: inline-block;
 text-decoration: none;
-color: rgb(121, 26, 26);
+color:wheat;
 padding-left:10px ;
 text-align: center;
 line-height: 2;
@@ -217,4 +257,99 @@ margin: 12px;
   font-size: 15px;
   padding: 10px 30px;
  width: 60%;
+}
+
+
+
+
+.menu-bar{
+  background-color: rgb(15, 189, 73);
+  text-align:right;
+  position: static;
+  top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 1;
+    transition: all .5s;
+}
+
+.menu-bar ul{
+  display: inline-flex;
+  list-style: none;
+  color: white;
+}
+
+.menu-bar ul li{
+  width: 100px;
+  margin: 10px;
+  padding: 10px;
+}
+
+.menu-bar ul li a{
+  text-decoration: none;
+  color:white;
+  font-size: 20px;
+}
+
+.active, .menu-bar ul li a:hover{
+background-color: #2bab0d;
+border-radius: 3px;
+}
+
+
+
+.input-popup{
+  border-radius: 4px;
+    border: 1px solid rgb(184, 11, 140);
+     padding: 1px 30px;
+    text-align: center;
+    font-size: 20px; 
+    font-weight: 600;
+    width: 50%;
+       cursor: pointer;
+}
+
+.button-popup{
+  display: inline-block;
+    max-width: 280px;
+    width: 70%;
+    height: 40px; 
+    border-radius: 4px;
+    background-color:rgba(211, 60, 153, 0.822);
+color:white;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.3;
+    transition: all .3s; 
+    margin-top: 10px;
+
+}
+
+.button-popup2{
+  display: inline-block;
+    max-width: 280px;
+    width: 20%;
+    height: 33px; 
+    border-radius: 4px;
+    background-color:rgb(228, 30, 211);
+color:white;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.3;
+    transition: all .3s; 
+
+
+}
+
+.modal-body .close2 {
+ 
+  cursor: pointer;
+  position: absolute;
+  top: -30px;
+  right: -830px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: rgb(245, 239, 239);
 }

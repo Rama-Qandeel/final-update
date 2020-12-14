@@ -15,23 +15,43 @@ const ContentSold = ({ close, ...props }) => {
   } = props.data;
 
   return (
-    <div className="modal2">
-      <a className="close2" onClick={close}>
+    <div className="modal-body">
+      <div class="container-fluid">
+      <div class="row">
+    <a className="close2" onClick={close}>
         &times;
-      </a>
-      <div className="header2"> {product_name} </div>
-      <div className="content2">
-        <img className="img-popup2" src={picture} alt={product_name} />
-        <div className="info-popup2">
-          <h2>{product_name}</h2>
-          <p>{product_descripition}</p>
-          <p>
-            {unit_price} {quantity_per_unit}
-          </p>
-          <h3 style={{ color: "red" }}>Out of stock</h3>
+       </a>
+      <div class="col-md-4">{product_name}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 ml-auto">
+      <img className="img-popup2" src={picture} alt={product_name} /></div>
+      <div class="col-md-2 ml-auto"> <h2 style={{marginLeft:"300px", width:"200px"}}>{product_name}</h2>
+          <p style={{marginLeft:"300px", width:"200px"}}>{product_descripition}</p>
+          <p style={{marginLeft:"300px" }}>
+                {unit_price} 
+                {quantity_per_unit}
+
+              </p>
+
+              <h3 style={{ color: "red",marginLeft:"300px" , width:"200px"}}>Out of stock</h3>
+
+
+</div>
+</div>
         </div>
       </div>
-    </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+     
   );
 };
 

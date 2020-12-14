@@ -59,71 +59,106 @@ const AddStore = ({ close, ...props }) => {
         throw error;
       });
   };
-
+  // modal-title
   return (
-    <div>
-      <a className="close" onClick={close}>
+    <div className="modal-body">
+      <div class="container-fluid">
+      <div class="row">
+    <a className="close2" onClick={close}>
         &times;
-      </a>
-      <div>
-        <div>
-          <label htmlFor="name store"> Name Store : </label>
-          <input
-            type="text"
-            name="name store"
-            placeholder="Enter your name store"
-            value={nameStore}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="picture"> Picture : </label>
-          <input
-            type="text"
-            name="picture store"
-            placeholder="Enter picture store"
-            value={pictureStore}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="category"> Store Category : </label>
-          <select
-            name="store category"
-            id="store category"
-            onClick={handleChange}
-          >
-            <option value="none" selected="selected">
-              {" "}
-              Choose One{" "}
-            </option>
-            {getStoreCategory.map((e, key) => {
-              return (
-                <option key={key} value={e.store_category}>
-                  {e.store_category}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-        <div>
-          <label htmlFor="address"> Address : </label>
-          <input
-            type="text"
-            name="address"
-            placeholder="Enter store adrdress"
-            value={address}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <button onClick={handleSubmit}>Add Store</button>
-        </div>
-      </div>
+       </a>
+       </div>
+       <div class="row">
+      <h2>Add your store</h2>
+      <div class="">
+    <div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Name Store : </span>
+  </div>
+  <input 
+  type="text" 
+  class="form-control"
+   aria-label="Default"
+    aria-describedby="inputGroup-sizing-default"
+    type="text"
+    name="name store"
+    placeholder="Enter your name store"
+    value={nameStore}
+    onChange={handleChange}
+    required
+    />
+</div> 
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Picture : </span>
+  </div>
+  <input 
+  type="text" 
+  class="form-control"
+   aria-label="Default"
+    aria-describedby="inputGroup-sizing-default"
+    type="text"
+    name="picture store"
+    placeholder="Enter picture store"
+    value={pictureStore}
+    onChange={handleChange}
+    required
+    />
+</div> 
+
+
+
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">Store Category :</label>
+
+  </div> 
+     
+   
+  <select
+    class="custom-select"
+      name="store category"
+      id="store category"
+      onClick={handleChange}
+    >
+      <option value="none" selected="selected">
+        {" "}
+        Choose One{" "}
+      </option>
+      {getStoreCategory.map((e, key) => {
+        return (
+          <option key={key} value={e.store_category}>
+            {e.store_category}
+          </option>
+        );
+      })}
+    </select>
     </div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Address : </span>
+  </div>
+  <input 
+  type="text" 
+  class="form-control"
+   aria-label="Default"
+    aria-describedby="inputGroup-sizing-default"
+    type="text"
+    name="address"
+    placeholder="Enter store adrdress"
+    value={address}
+    onChange={handleChange}
+    required
+    />
+</div>  
+   <div>
+    <button onClick={handleSubmit}>Add Store</button>
+  </div>
+    </div>
+       </div>
+       </div>
+       </div>
   );
 };
 

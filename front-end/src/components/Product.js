@@ -22,10 +22,9 @@ const Product = (props) => {
 
   return (
   <div>
-    {!available_product?(<div>
-      <Popup modal trigger={
+    {!available_product?(<div >
+      <Popup  modal trigger={
     <div className="store">
-     
       <img src={picture} alt={product_name} />
       <div className="store-info">
         <h3>{product_name}</h3>
@@ -47,6 +46,7 @@ const Product = (props) => {
       </div>
     </div>
     }>
+     
       {close =>  <Content  close={close} data={props.data}/>}
       </Popup>
 
@@ -65,8 +65,10 @@ const Product = (props) => {
         <spam>{product_descripition}</spam>
       </div>
     </div>
+    
     }>
       {close =>  <ContentSold  close={close} data={props.data}/>}
+      
       </Popup>)}  
  
    

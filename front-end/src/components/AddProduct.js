@@ -104,25 +104,40 @@ const AddProduct = ({ close, ...props }) => {
   };
 
   return (
-    <div className="modaladd">
-      <a className="close" onClick={close}>
-        &times;
-      </a>
-      <div className="header">
-        <div>
-          <label htmlFor="product name"> Product Name : </label>
-          <input
-            type="text"
+    <div className="modal-body">
+    <div class="container-fluid">
+    <div class="row">
+  <a className="close2" onClick={close}>
+      &times;
+     </a>
+     </div>
+     <div class="row">
+    <h2>Add your product</h2>
+    <div class="">
+  <div class="input-group mb-3">
+<div class="input-group-prepend">
+  <span class="input-group-text" id="inputGroup-sizing-default">Product Name :  </span>
+</div>
+<input 
+type="text" 
+class="form-control"
+ aria-label="Default"
+ type="text"
             name="product name"
             placeholder="Enter  product name"
             value={productName}
             onChange={handleChange}
             required
-          />
-        </div>
-        <div>
-          <label htmlFor="store "> Store Name : </label>
-          <select name="store" id="store" onClick={handleChange}>
+  />
+</div> 
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+  <label class="input-group-text" for="inputGroupSelect01">Store Name :</label>
+
+</div> 
+   
+ 
+<select name="store" id="store" onClick={handleChange}>
             <option value="none" selected="selected">
               {" "}
               Choose One{" "}
@@ -135,10 +150,15 @@ const AddProduct = ({ close, ...props }) => {
               );
             })}
           </select>
-        </div>
-        <div>
-          <label htmlFor="category"> Product Category : </label>
-          <select name="category" id="category" onClick={handleChange}>
+  </div>
+  <div class="input-group mb-3">
+<div class="input-group-prepend">
+  <label class="input-group-text" for="inputGroupSelect01">Product Category : </label>
+
+</div> 
+   
+ 
+<select name="category" id="category" onClick={handleChange}>
             <option value="none" selected="selected">
               {" "}
               Choose One{" "}
@@ -151,47 +171,75 @@ const AddProduct = ({ close, ...props }) => {
               );
             })}
           </select>
-        </div>
-        <div>
-          <label htmlFor="product descripition"> Product Descripition : </label>
-          <input
-            type="text"
-            name="product descripition"
-            placeholder="Enter product descripition"
-            value={productDescripition}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="quantity per unit"> Quantity Per Unit : </label>
-          <input
-            type="text"
-            name="quantity per unit"
-            placeholder="ex : JD/KG"
-            value={quantityPerUnit}
-            onChange={handleChange}
-            required
-          />
-        </div>
+  </div>
 
-        <div>
-          <label htmlFor="price"> Price : </label>
-          <input
-            type="text"
-            name="price"
-            placeholder="Enter price"
-            value={price}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="price"> Available Product </label>
-          <select
+
+
+
+  
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+  <span class="input-group-text" id="inputGroup-sizing-default">Product Descripition : </span>
+</div>
+<input 
+type="text" 
+class="form-control"
+ aria-label="Default"
+  aria-describedby="inputGroup-sizing-default"
+  type="text"
+  name="product descripition"
+  placeholder="Enter product descripition"
+  value={productDescripition}
+  onChange={handleChange}
+  required
+  />
+</div> 
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+  <span class="input-group-text" id="inputGroup-sizing-default">Quantity Per Unit : </span>
+</div>
+<input 
+type="text" 
+class="form-control"
+ aria-label="Default"
+  aria-describedby="inputGroup-sizing-default"
+  type="text"
+  name="quantity per unit"
+  placeholder="ex : JD/KG"
+  value={quantityPerUnit}
+  onChange={handleChange}
+  required
+  />
+</div> 
+
+
+
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+  <span class="input-group-text" id="inputGroup-sizing-default">Price : </span>
+</div>
+<input 
+type="text" 
+class="form-control"
+ aria-label="Default"
+  aria-describedby="inputGroup-sizing-default"
+  type="text"
+  name="price"
+  placeholder="Enter price"
+  value={price}
+  onChange={handleChange}
+  required
+  />
+</div>  
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+  <span class="input-group-text" id="inputGroup-sizing-default">Available Product</span>
+</div>
+<select
             name="available product"
             id="available product"
             onClick={handleChange}
+          
           >
             <option value="none" selected="selected">
               {" "}
@@ -200,34 +248,51 @@ const AddProduct = ({ close, ...props }) => {
             <option value="0">Yes</option>
             <option value="1">No</option>
           </select>
-        </div>
-        <div>
-          <label htmlFor="discount available"> Discount Available </label>
-          <input
-            type="text"
-            name="discount available"
-            placeholder="if no enter 0"
-            value={discountAvailable}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="picture"> Picture : </label>
-          <input
-            type="text"
-            name="picture product"
+</div>  
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+  <span class="input-group-text" id="inputGroup-sizing-default">Discount Available  </span>
+</div>
+<input 
+type="text" 
+class="form-control"
+ aria-label="Default"
+  aria-describedby="inputGroup-sizing-default"
+  name="discount available"
+  placeholder="if no enter 0"
+  value={discountAvailable}
+  onChange={handleChange}
+  required
+  />
+</div>  
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Picture : </span>
+  </div>
+  <input 
+  type="text" 
+  class="form-control"
+   aria-label="Default"
+    aria-describedby="inputGroup-sizing-default"
+    type="text"
+    name="picture product"
             placeholder="Enter picture product"
             value={pictureProduct}
             onChange={handleChange}
             required
-          />
-        </div>
-        <div>
-          <button onClick={handleSubmit}>Add Product</button>
-        </div>
-      </div>
-    </div>
+    />
+</div> 
+
+
+ <div>
+  <button onClick={handleSubmit}>Add Product</button>
+</div>
+  </div>
+     </div>
+     </div>
+     </div>
+   
+
   );
 };
 

@@ -26,51 +26,53 @@ const clearlocal=()=>{
 
   return (
     <div className="container2">
-      <nav className=" navheader">
-        <div className="">
-          <ul className="navbar2-nav ">
-            <li className="nav-item">
-              <Link to="/cart" className="nav-link">
-                Cart
-                <sup
-                  style={{ border: "3px solid orange", borderRadius: "30%" }}
-                >
-                  {count}
-                </sup>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/" className="nav-link">
-                home
-              </Link>
-            </li>
-            <li id="dropdown" className="nav-item">
-              <a className="nav-item">Account</a>
-              <div id="select">
-                <a href="/Account">My Account</a>
-                <a href="/delevaryman">My delevaryman Account</a>
-                
-                {add ? (
-                  <div>
-                    {" "}
-                    <Popup modal trigger={<a>Add Store</a>}>
-                      {(close) => <AddStore close={close} {...props} />}
-                    </Popup>
-                    <Popup modal trigger={<a>Add Product</a>}>
-                      {(close) => <AddProduct close={close} {...props} />}
-                    </Popup>
-                    <a href="/" onClick={()=>localStorage.clear()}>Log Out </a>
-                  </div>
-                ) : (
+    <nav className=" navheader">
+      <div className="">
+        <ul className="navbar2-nav ">
+          <li className="nav-item">
+            <Link to="/cart" className="nav-link">
+              Cart
+              <sup
+                style={{ border: "3px solid orange", borderRadius: "30%" }}
+              >
+                {count}
+              </sup>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/" className="nav-link">
+              home
+            </Link>
+          </li>
+          <li id="dropdown" className="nav-item">
+            <a className="nav-item">Account</a>
+            <div id="select">
+              <a href="/Account">My Account</a>
+              <a href="/delevaryman">My delevaryman Account</a>
+              
+              {add ? (
+                <div>
+                  {" "}
+                  <Popup modal trigger={<a>Add Store</a>}>
+                    {(close) => <AddStore close={close} {...props} />}
+                  </Popup>
+                  <Popup modal trigger={<a>Add Product</a>}>
+                    {(close) => <AddProduct close={close} {...props} />}
+                  </Popup>
                   <a href="/" onClick={()=>localStorage.clear()}>Log Out </a>
-                )}
-              </div>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-  );
+                </div>
+              ) : (
+                <a href="/" onClick={()=>localStorage.clear()}>Log Out </a>
+              )}
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  )
 };
 
 export default Header;
+ 
+         
