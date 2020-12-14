@@ -152,9 +152,13 @@ const AddStore = ({ close, ...props }) => {
     required
     />
 </div>  
-   <div>
+   {/* <div>
     <button onClick={handleSubmit}>Add Store</button>
-  </div>
+  </div> */}
+  <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={()=>close()}>Close</button>
+        <button type="button" class="btn btn-primary" onClick={handleSubmit}>Add Store</button>
+      </div>
     </div>
        </div>
        </div>

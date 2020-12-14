@@ -283,10 +283,11 @@ class="form-control"
     />
 </div> 
 
+<div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={()=>close()}>Close</button>
+        <button type="button" class="btn btn-primary" onClick={handleSubmit}>Add Product</button>
+      </div>
 
- <div>
-  <button onClick={handleSubmit}>Add Product</button>
-</div>
   </div>
      </div>
      </div>
