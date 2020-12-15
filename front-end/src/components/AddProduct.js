@@ -72,7 +72,7 @@ const AddProduct = ({ close, ...props }) => {
   };
 
   const handleSubmit = (event) => {
-    let data = (data = {
+    let data =  {
       product_category_id: productCategory,
       store_id: store,
       product_name: productName,
@@ -82,7 +82,7 @@ const AddProduct = ({ close, ...props }) => {
       available_product: availableProduct,
       discount_available: discountAvailable,
       picture: pictureProduct,
-    });
+    };
 
     axios
       .post("http://localhost:5000/product", data)
@@ -104,7 +104,7 @@ const AddProduct = ({ close, ...props }) => {
   };
 
   return (
-    <div className="modal-body">
+    <div className="modal-body" style={{boxShadow: "5px 10px 10px 5px #888888"}}>
     <div class="container-fluid">
     <div class="row">
   <a className="close2" onClick={close}>
@@ -112,10 +112,10 @@ const AddProduct = ({ close, ...props }) => {
      </a>
      </div>
      <div class="row">
-    <h2>Add your product</h2>
-    <div class="">
+    <h2 style={{textAlign:"center",marginBottom:"5px"}}>Add your product</h2>
+    <div style={{marginTop:"10px"}}>
   <div class="input-group mb-3">
-<div class="input-group-prepend">
+<div class="input-group-prepend" >
   <span class="input-group-text" id="inputGroup-sizing-default">Product Name :  </span>
 </div>
 <input 
@@ -284,16 +284,13 @@ class="form-control"
 </div> 
 
 <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={()=>close()}>Close</button>
-        <button type="button" class="btn btn-primary" onClick={handleSubmit}>Add Product</button>
+        <button type="button" class="btn btn-secondary"  data-dismiss="modal" onClick={()=>close()}>Close</button>
+        <button type="button" class="btn btn-primary" style={{backgroundColor:"green"}}onClick={handleSubmit}>Add Product</button>
       </div>
-
   </div>
      </div>
      </div>
      </div>
-   
-
   );
 };
 

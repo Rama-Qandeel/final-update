@@ -16,10 +16,6 @@ const Product = (props) => {
     unit_price,
   } = props.data;
  
-
-
-
-
   return (
   <div>
     {!available_product?(<div >
@@ -30,7 +26,7 @@ const Product = (props) => {
         <h3>{product_name}</h3>
       </div>
       {Number(discount_available)?(<div>
-      <h3 style={{color: "red"}}>-{discount_available} off</h3>
+      <h3 style={{color: "green"}}>-{discount_available} off</h3>
       <spam style={{textDecoration:"line-through"}}>
         {unit_price}{quantity_per_unit}</spam>
         <spam style={{color:"red"}}> {unit_price - discount_available}{quantity_per_unit}</spam>
@@ -41,7 +37,7 @@ const Product = (props) => {
       </p>
     </div>)}
       
-      <div>
+    <div>
         <spam>{product_descripition}</spam>
       </div>
     </div>

@@ -9,12 +9,6 @@ const Payment = ({ close, ...props }) => {
   const[payment,setPayment] =useState("") 
   const [show,setShow]=useState(false)
 
-// console.log("ggggg",props.data[0].check_out_id);
-// const showitems=()=>{
-//   setShow(true)
-// }
-
-
   const handleChange = (event) => {
     if (event.target.name === "Card Number") {
         setCardNumber(event.target.value);
@@ -34,7 +28,6 @@ const Payment = ({ close, ...props }) => {
       setShow(true)
     }
 }
-
 
 const handleSubmit = (event) => {
   const user = jwt_decode(localStorage.getItem("token"));
@@ -73,51 +66,90 @@ const handleSubmit = (event) => {
 
 
   return (
-    <div className="modal2">
-      <a className="close2" onClick={close}>
-        &times;
-      </a>
-      <input type="checkbox" 
+    <div className="modal-body" style={{boxShadow: "5px 10px 10px 5px #888888"}}>
+         <div class="container-fluid">
+    <div class="row">
+  <a className="close2" onClick={close}>
+      &times;
+     </a>
+     </div>
+   <div>   <input type="checkbox" 
               name="cash"
                value={payment}
                onChange={handleChange}
               />
-             <label for="cash"> Cash on delivery</label>
-                 <input type="checkbox"
+              {" "}
+            <label for="cash"> Cash on delivery</label></div>
+            <div>  <input type="checkbox"
                name="Card"
                 value={payment}
                 onChange={handleChange}
                 />
+     {" "}
     <label for="card"> Add Credit Card</label>
    
-   {show?(<div><input
-   type="text"
-   name ="Card Number"
-   placeholder="Card Number"
-   value={cardNumber}
-   onChange={handleChange}
-   />
-     <input
-   type="text"
+   {show?(<div style={{marginTop:"10px"}}>
+   <div class="input-group mb-3">
+<div class="input-group-prepend">
+  <span class="input-group-text" id="inputGroup-sizing-default">Card Number </span>
+</div>
+<input 
+type="text" 
+class="form-control"
+ aria-label="Default"
+  aria-describedby="inputGroup-sizing-default"
+  type="text"
+  name ="Card Number"
+  placeholder="Card Number"
+  value={cardNumber}
+  onChange={handleChange}
+  required
+  />
+</div>
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+  <span class="input-group-text" id="inputGroup-sizing-default">Expiration </span>
+</div>
+<input 
+type="text" 
+class="form-control"
+ aria-label="Default"
+  aria-describedby="inputGroup-sizing-default"
+  type="text"
   name="Expiration"
-   placeholder="Expiration"CVV
-   value={expiration}
-   onChange={handleChange}
-   />
-    <input
-   type="text"
-   name="CVV"
+  placeholder="Expiration"CVV
+  value={expiration}
+  onChange={handleChange}
+  required
+  />
+</div>
+
+<div class="input-group mb-3">
+<div class="input-group-prepend">
+  <span class="input-group-text" id="inputGroup-sizing-default">CVV </span>
+</div>
+<input 
+type="text" 
+class="form-control"
+ aria-label="Default"
+  aria-describedby="inputGroup-sizing-default"
+  type="text"
+  name="CVV"
    placeholder="CVV"
    value={cvv}
    onChange={handleChange}
-   /></div>):(null)}
-   
-   <div>
-   <button  onClick={close} >Cancel</button>
-   <button onClick={()=>{handleSubmit(); close()}} >Continue</button>
+  required
+  />
+</div> 
+   </div>):(null)}
    </div>
-</div>
+<div class="modal-footer">
+        <button type="button" class="btn btn-secondary"  data-dismiss="modal" onClick={()=>close()}>Close</button>
+        <button type="button" class="btn btn-primary" style={{backgroundColor:"green"}}onClick={()=>{handleSubmit(); close()}}>Continue</button>
+      </div>
 
+</div>
+</div>
   );
 };
 

@@ -69,8 +69,8 @@ const AddStore = ({ close, ...props }) => {
        </a>
        </div>
        <div class="row">
-      <h2>Add your store</h2>
-      <div class="">
+      <h2 style={{textAlign:"center",marginBottom:"5px"}}>Add your store</h2>
+      <div style={{marginTop:"10px"}}>
     <div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default">Name Store : </span>
@@ -152,12 +152,10 @@ const AddStore = ({ close, ...props }) => {
     required
     />
 </div>  
-   {/* <div>
-    <button onClick={handleSubmit}>Add Store</button>
-  </div> */}
+
   <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" onClick={()=>close()}>Close</button>
-        <button type="button" class="btn btn-primary" onClick={handleSubmit}>Add Store</button>
+        <button type="button" class="btn btn-primary" style={{backgroundColor:"green"}} onClick={handleSubmit}>Add Store</button>
       </div>
     </div>
        </div>

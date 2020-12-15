@@ -181,10 +181,10 @@ const createCheckOut=()=>{
                 {quantity_per_unit}
 
               </h2>
-            style={{marginLeft:"300px" }}
+           
             </div>
           )}
-          <p >Quantity:</p>
+          <p style={{marginLeft:"300px" }}>Quantity:</p>
           {btnAdd ? getquant() : null}
           {btnAdd ? (
             <div style={{marginLeft:"300px",width:"200px"

@@ -147,6 +147,9 @@ text-align: center;
   text-decoration: none;
   color: rgb(245, 239, 239);
 }
+
+
+
 .popupr .close2:hover {
   color: #06D85F;
 }
@@ -188,9 +191,9 @@ text-align: center;
   
 }
 .order{
-  border:2px solid red;
-  margin:5px
-  
+  border:2px solid rgba(233, 227, 227, 0.993);
+  margin:5px auto;
+  width:100%;
 }
 .order p{
   display: inline;
