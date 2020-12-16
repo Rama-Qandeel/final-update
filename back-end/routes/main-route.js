@@ -56,7 +56,9 @@ const {
   checkOut,
   createCheckOut,
   getLastOrder,
-  getOrderstocheck
+  getOrderstocheck,
+  checkOutUnassignedOrders,
+  get
 } = require("../controllers/checkOut");
 
 const {
@@ -104,6 +106,8 @@ mainRouter.get("/checkout/:user_id",checkOut);
 mainRouter.get("/createcheckout/:user_id",createCheckOut);
 mainRouter.get("/getlastorder/:user_id",getLastOrder);
 mainRouter.get("/getOrderstocheck/:user_id",getOrderstocheck);
+mainRouter.get("/unassignedOrdersrama",checkOutUnassignedOrders);
+mainRouter.get("/get",get);
 
 /***********user*********** */
 mainRouter.post("/register", register);

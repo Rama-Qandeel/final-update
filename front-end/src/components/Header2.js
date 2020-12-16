@@ -21,6 +21,9 @@ const clearlocal=()=>{
 }
 
 
+  const user = jwt_decode(localStorage.getItem("token"));
+
+
 
 
 
@@ -28,6 +31,7 @@ const clearlocal=()=>{
     <div className="container2">
     <nav className=" navheader">
       <div className="">
+      <p style={{float:"right",marginTop:"10px" ,marginRight:"5px",fontSize:"20px",fontStyle:"bold"}}> Welcome {user.first_name.toUpperCase()} !</p>
         <ul className="navbar2-nav ">
           <li className="nav-item">
             <Link to="/cart" className="nav-link">
@@ -66,7 +70,9 @@ const clearlocal=()=>{
               )}
             </div>
           </li>
+         
         </ul>
+        
       </div>
     </nav>
   </div>

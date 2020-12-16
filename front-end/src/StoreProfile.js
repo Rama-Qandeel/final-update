@@ -132,37 +132,37 @@ const StoreProfile = (props) => {
                 <p>
                   <input
                     onChange={(e) => setproductName(e.target.value)}
-                    placeholder="insert new products Name"
+                    placeholder="new Name"
                   />
                 </p>
                 <p>
                   <input
                     onChange={(e) => setProductDescripition(e.target.value)}
-                    placeholder="insert new products Descripition"
+                    placeholder="new Descripition"
                   />
                 </p>
                 <p>
                   <input
                     onChange={(e) => setQuantityPerUnit(e.target.value)}
-                    placeholder="insert new products QuantityPerUnit"
+                    placeholder="new QuantityPerUnit"
                   />
                 </p>
                 <p>
                   <input
                     onChange={(e) => setPrice(e.target.value)}
-                    placeholder="insert new products Price"
+                    placeholder="new Price"
                   />
                 </p>
                 <p>
                   <input
                     onChange={(e) => setAvailableProduct(e.target.value)}
-                    placeholder="insert new products available value"
+                    placeholder="is available"
                   />
                 </p>
                 <p>
                   <input
                     onChange={(e) => setPicture(e.target.value)}
-                    placeholder="insert new products Picture"
+                    placeholder="insert new Picture"
                   />
                 </p>
                 <button
@@ -204,7 +204,7 @@ const StoreProfile = (props) => {
             <img
               src={userStore.store_pic}
               alt="store pic"
-              className="pPic  rounded mx-auto d-block"
+              className="pPic rounded mx-auto d-block"
             ></img>{" "}
           </div>
         </div>

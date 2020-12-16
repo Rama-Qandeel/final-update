@@ -41,6 +41,9 @@ const DelivaryProfile = (props) => {
         throw err;
       });
   };
+
+
+
   const pastOrdersInfo = async () => {
     const user = jwt_decode(localStorage.getItem("token"));
     axios
@@ -52,6 +55,9 @@ const DelivaryProfile = (props) => {
         throw err;
       });
   };
+
+
+
   const unassignedOrdersInfo = async () => {
     axios
       .get(`http://localhost:5000/unassignedOrders`)
@@ -62,6 +68,9 @@ const DelivaryProfile = (props) => {
         throw err;
       });
   };
+
+
+
   const assigneeOrder = async (infoArgumnt) => {
     const user = jwt_decode(localStorage.getItem("token"));
     const body = { orders_id: infoArgumnt, delivary_user_id: user.user_id };
@@ -91,7 +100,13 @@ const DelivaryProfile = (props) => {
       </div>
     </li>
   ));
-  const myUnassignedOrders = unassignedOrders.map((e, index) => (
+  
+  
+  
+  const sort=unassignedOrders.sort((a, b) => (a.user_id > b.user_id) ? 1 : -1)
+  console.log('sort',sort);
+  
+  const myUnassignedOrders = sort.map((e, index) => (
     <li
       className="list-group-item list-group-item-action"
       num={index + 1}
@@ -163,6 +178,7 @@ const DelivaryProfile = (props) => {
         {" "}
         UnassignedOrders
         <ul>{myUnassignedOrders}</ul>
+      
       </div>
       <div>
         {" "}

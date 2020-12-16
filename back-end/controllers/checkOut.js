@@ -17,6 +17,62 @@ const checkOut = (req, res) => {
         res.json(results)
     })
 }
+
+
+const checkOutUnassignedOrders = (req, res) => {
+    const query = `SELECT check_out.check_out_id,users.first_name,
+    users.last_name,check_out.orders_id,orders.product_name
+    FROM check_out 
+   INNER JOIN users ON (check_out.user_id)=users.user_id 
+   INNER JOIN orders ON (check_out.orders_id)=orders.orders_id 
+   WHERE check_out.is_deleted =0`
+    const data = [req.params.user_id]
+    connection.query(query, data, (err, results) => {
+        if (err) {
+            throw err   
+        }
+        res.json(results)
+    })
+}
+
+const get = (req, res) => {
+
+   const query = `SELECT orders_id
+    FROM check_out 
+   WHERE check_out.is_deleted =0 `
+
+
+   connection.query(query, (err, results) => {
+        if (err) {
+            throw err   
+        }
+    //    res.json(results[0].orders_id.split(","))
+       const r=results[0].orders_id.split(",")
+       const m=r.map((ele)=>{
+           return Number(ele)
+       })
+
+       const query2 = `SELECT product_name
+       FROM orders 
+      WHERE orders_id BETWEEN ${m[0]} AND ${m[m.length-1]}`
+
+      connection.query(query2, (err, results2) => {
+        if (err) {
+            throw err   
+        }
+
+res.json(results2)
+    }) 
+   })
+
+}
+
+
+
+
+
+
+
 const createCheckOut = (req, res) => {
     const query = `SELECT user_id FROM check_out
    WHERE user_id =? AND is_deleted=0`
@@ -53,7 +109,7 @@ connection.query(query3, data3, (err, results3) => {
         }
         res.json(results4)
     })
-    })
+    })  
 })
    
 }
@@ -79,7 +135,7 @@ connection.query(query, data, (err, results) => {
 })
       }
     })
-    }
+    } 
 
 const getLastOrder = (req, res) => {
     const query =`SELECT orders_id
@@ -104,4 +160,8 @@ const getOrderstocheck = (req, res) => {
     })
 }
 
-module.exports={checkOut,createCheckOut,getLastOrder,getOrderstocheck}
+
+
+
+module.exports={checkOut,createCheckOut,getLastOrder,
+    getOrderstocheck,checkOutUnassignedOrders,get}

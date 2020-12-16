@@ -82,11 +82,11 @@ const login = (req, res) => {
         res.json(token);
       } else {
         // res.status(422);
-        res.json({ error: "Invalid login check your password" });
+        res.json("Invalid login check your password" );
       }
     } else {
       // res.status(404);
-      res.json({ error: "Invalid login check your email" });
+      res.json( "Invalid login check your email" );
     }
   });
 };

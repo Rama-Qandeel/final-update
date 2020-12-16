@@ -16,16 +16,6 @@ import Check from "./components/Check";
 
 
 const App = () => {
-  const [token,setToken]=useState(false)
-  
- useEffect(() => {
-  if(!!localStorage.getItem("token"))
-  {
-  return  setToken(true)
-  }else{
-  return  setToken(false)
-  }
- },[token]) 
 
   
   return (
@@ -33,14 +23,29 @@ const App = () => {
     
       <Route path="/login" render={(props) => <Login {...props} />} />
       <Route path="/register" render={(props) => <Register {...props} />} />
-      <Route exact path="/" render={(props) =>
-       <div>
-     {token?(<div><Header2 {...props} />
-      <Home {...props} /></div>):(<div><Header {...props} />
-      <Home {...props} /></div>)}
-     </div> 
-      }/>
-
+{/* //********************************** */ }
+   <Route
+        
+     exact   path="/"
+        render={(props) =>
+          <div>
+         <Header {...props} />
+         <Home {...props} />
+          </div>
+          }
+      />
+        <Route
+       path="/home"
+        render={(props) =>
+          <div>
+         <Header2 {...props} />
+         <Home {...props} />
+          </div>
+          }
+      />
+      
+      
+      
       <Route
         
         path="/infostore/:store_id"

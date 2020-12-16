@@ -13,9 +13,71 @@ const Register = (props) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [imageProfile, setimageProfile] = useState("");
   const [roleId, setRoleId] = useState(0);
-  const [paymentId, setPaymentId] = useState(1);
-  const [storeId, setStoreId] = useState(1);
 
+  const [errorEmail, setErrorEmail] = useState("");
+  const [errorPassword, setErrorPassword] = useState("");
+  const [errorFirstName, setErrorFirstName] = useState("");
+  const [errorLastName, setErrorLastName] = useState("");
+  const [errorAddress, setErrorAddress] = useState("");
+  const [errorPhoneNumber, setErrorPhoneNumber] = useState("");
+  const [errorRoleId, setErrorRoleId] = useState("");
+  
+  
+  const validate = () => {
+    let errorEmail = "";
+    let errorPassword = "";
+    let errorFirstName = "";
+    let errorlasttName = "";
+    let errorAddress = "";
+    let errorPhoneNumber = "";
+    let errorRoleId = "";
+
+    if(!email.length){
+      errorEmail="Invalid email"
+  }
+  if(!password.length){
+    errorPassword="Invalid password"
+  }
+    if (!firstName.length) {
+      errorFirstName = "Invalid first name";
+    }
+    if (!lastName.length) {
+      errorlasttName = "Invalid last name";
+    }
+    if (!address.length) {
+      errorAddress = "Invalid address";
+    }
+    if (!phoneNumber.length) {
+      errorPhoneNumber = "Invalid phoneNumber";
+    } 
+    if (!roleId.length) {
+      errorRoleId = "Invalid RoleId";
+    }
+    if (
+      errorEmail ||
+      errorPassword ||
+      errorFirstName ||
+      errorlasttName||
+      errorAddress||
+      errorPhoneNumber||
+      errorRoleId
+    ) {
+      setErrorEmail(errorEmail);
+      setErrorPassword(errorPassword);
+      setErrorFirstName(errorFirstName);
+      setErrorAddress(errorAddress);
+      setErrorLastName(errorLastName);
+      setErrorPhoneNumber(errorPhoneNumber);
+      setErrorRoleId(errorRoleId);
+      return false;
+    }
+    return true;
+  };
+  
+  
+  
+  
+  
   const handleChange = (event) => {
     if (event.target.name === "email") {
       setEmail(event.target.value);
@@ -47,7 +109,18 @@ const Register = (props) => {
   };
 
   const handleSubmit = (event) => {
-    const data = {
+    const isValidate= validate()
+    if(isValidate){
+     setErrorEmail("")
+     setErrorPassword("")
+     setErrorFirstName("");
+     setErrorAddress("");
+     setErrorLastName("");
+     setErrorPhoneNumber("");
+     setErrorRoleId("");
+     
+     
+     const data = {
       last_name: lastName,
       first_name: firstName,
       address: address,
@@ -57,8 +130,6 @@ const Register = (props) => {
       imageProfile,
       email: email,
       password: password,
-      store_id: storeId,
-      payment_id: paymentId,
       role_id: roleId,
     };
     axios
@@ -74,6 +145,8 @@ const Register = (props) => {
       .catch((error) => {
         throw error;
       });
+    }
+    
   };
 
   return (
@@ -89,6 +162,8 @@ const Register = (props) => {
           required
         />
       </div>
+      <div style={{fontSize:"12" ,color:"red",}}>{errorEmail}</div>
+
       <div>
         <input
           type="password"
@@ -99,6 +174,8 @@ const Register = (props) => {
           required
         />
       </div>
+      <div style={{fontSize:"12" ,color:"red",}}>{errorPassword}</div>
+
       <div>
         <input
           type="text"
@@ -109,6 +186,8 @@ const Register = (props) => {
           required
         />
       </div>
+      <div style={{fontSize:"12" ,color:"red",}}>{errorFirstName}</div>
+
       <div>
         <input
           type="text"
@@ -119,6 +198,7 @@ const Register = (props) => {
           required
         />
       </div>
+      <div style={{fontSize:"12" ,color:"red",}}>{errorLastName}</div>
 
       <div>
         <label htmlFor="address"> Select a country</label>
@@ -136,6 +216,7 @@ const Register = (props) => {
           required
         />
       </div>
+
       <div>
         <input
           type="text"
@@ -156,6 +237,8 @@ const Register = (props) => {
           required
         />
       </div>
+      <div style={{fontSize:"12" ,color:"red",}}>{errorPhoneNumber}</div>
+
       <div>
         <label htmlFor="roleId"> Select a type </label>
         <select name="roleId" id="roleId" onClick={handleChange}>
@@ -164,6 +247,8 @@ const Register = (props) => {
           <option value="3">Delivery</option>
         </select>
       </div>
+      <div style={{fontSize:"12" ,color:"red",}}>{errorRoleId}</div>
+
       <div>
         <button onClick={handleSubmit}>Register</button>
       </div>

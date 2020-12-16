@@ -11,7 +11,6 @@ const InfoStore = (props) => {
   },[]);
 
   const getproducts = () => {
-    // let data = { store_id: props.location.state.store_id };
     axios
       .get(`http://localhost:5000/getproduct/${props.location.state.store_id}`)
       .then((response) => {
@@ -31,7 +30,6 @@ const InfoStore = (props) => {
           `http://localhost:5000/getsearch?search=${e.target.value}&id=${props.location.state.store_id}`
         )
         .then((response) => {
-          console.log('gggggggggggggggg');
           
           setProducts(response.data);
         })
@@ -41,7 +39,7 @@ const InfoStore = (props) => {
     }
   };
   const chooseStore = () => {
-    props.history.push("/");
+    props.history.push("/home");
   };
 
   
