@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Product from "./components/Product";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const InfoStore = (props) => {
   const [products, setProducts] = useState([]);
   const [searchProduct, setSearchProduct] = useState("");
 
+  useEffect(() => {
+    getproducts();
+  }, []);
+
   const getproducts = () => {
     let data = { store_id: props.location.state.store_id };
     axios
-      .get(`http://localhost:5000/getproduct/${props.location.state.store_id}`)
+      .post("http://localhost:5000/getproduct", data)
       .then((response) => {
         setProducts(response.data);
       })
@@ -33,23 +38,20 @@ const InfoStore = (props) => {
           throw error;
         });
     }
+    getproducts();
   };
-  
+
   const chooseStore = () => {
     props.history.push("/home");
   };
-
-  useEffect(() => {
-    getproducts();
-  }, []);
-
+  
   const renderProducts = products.map((product) => <Product data={product} />);
 
   return (
     <div>
-      <div className="search-container2">
+      <div className="search-container">
         <input
-          className="form-control search"
+          className="search"
           type="search"
           placeholder={`Search ${props.location.state.store_name}...`}
           onChange={handleOnChange}
@@ -57,31 +59,11 @@ const InfoStore = (props) => {
         />
       </div>
       {products.length ? (
-        <div className="store-container2">{renderProducts}</div>
+        <div className="store-container">{renderProducts}</div>
       ) : (
-        <div
-          style={{
-            textAlign: "center",
-          }}
-        >
-          <img
-            style={{
-              width: "100px",
-              marginTop: "50px",
-            }}
-            src="https://i.pinimg.com/564x/24/8c/c4/248cc4eec11b158d6eaf49c7088022a4.jpg"
-          />
-          <p
-            style={{
-              marginTop: "20px",
-              fontSize: "30px",
-            }}
-          >
-            Product not found in this store
-          </p>
-          <button class="btn btn-primary" onClick={chooseStore}>
-            Choose another store
-          </button>
+        <div>
+          <h2>Product not found in this store</h2>
+          <button onClick={chooseStore}>Choose another store</button>
         </div>
       )}
     </div>

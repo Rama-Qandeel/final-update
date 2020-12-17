@@ -7,13 +7,13 @@ const connection = mysql.createConnection({
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
 });
-
-connection.connect((err) => {
-  if (err) {
+      
+connection.connect((err)  => {
+  if (err) {  
     console.error('CONNECTION ERROR: ', err.stack);
     return;
   }
   console.log('CONNECTION ID: ', connection.threadId);
 });
 
-module.exports = connection;
+module.exports = connection;         

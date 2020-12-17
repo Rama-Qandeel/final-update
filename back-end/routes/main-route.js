@@ -6,6 +6,7 @@ const {
   getAllUsers,
   login,
   getUserById,
+  updatePic,
 } = require("../controllers/users_controller");
 
 const {
@@ -46,24 +47,16 @@ const {
   getUnassignedOrdersUser,
 } = require("../controllers/order");
 
-const {
-  createItem,
-  deleteItem,
-  getItems
-} = require("../controllers/item");
+const { createItem, deleteItem, getItems } = require("../controllers/item");
 
 const {
   checkOut,
   createCheckOut,
   getLastOrder,
   getOrderstocheck,
-  checkOutUnassignedOrders,
-  get
 } = require("../controllers/checkOut");
 
-const {
-  addpayment
-} = require("../controllers/payment");
+const { addpayment } = require("../controllers/payment");
 /***********product*********** */
 mainRouter.post("/product", addProduct);
 mainRouter.get("/getsearch", searchProduct);
@@ -102,15 +95,15 @@ mainRouter.get("/getorder/:user_id", getOrders);
 mainRouter.delete("/order/:orders_id", deleteOrder);
 
 //***********checkOut***** */
-mainRouter.get("/checkout/:user_id",checkOut);
-mainRouter.get("/createcheckout/:user_id",createCheckOut);
-mainRouter.get("/getlastorder/:user_id",getLastOrder);
-mainRouter.get("/getOrderstocheck/:user_id",getOrderstocheck);
-mainRouter.get("/unassignedOrdersrama",checkOutUnassignedOrders);
-mainRouter.get("/get",get);
+mainRouter.get("/checkout/:user_id", checkOut);
+mainRouter.get("/createcheckout/:user_id", createCheckOut);
+mainRouter.get("/getlastorder/:user_id", getLastOrder);
+mainRouter.get("/getOrderstocheck/:user_id", getOrderstocheck);
 
 /***********user*********** */
+
 mainRouter.post("/register", register);
+mainRouter.put("/updatePic/:user_id", updatePic);
 mainRouter.post("/login", login);
 mainRouter.get("/users", getAllUsers);
 mainRouter.get("/users/:user_id", getUserById);
@@ -119,8 +112,8 @@ mainRouter.get("/users/:user_id", getUserById);
 mainRouter.post("/payment", addpayment);
 
 /***********extra*********** */
-mainRouter.post('/item', createItem);
-mainRouter.get('/item', getItems);
-mainRouter.delete('/item', deleteItem);
+mainRouter.post("/item", createItem);
+mainRouter.get("/item", getItems);
+mainRouter.delete("/item", deleteItem);
 
 module.exports = mainRouter;

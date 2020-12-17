@@ -1,12 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-} from "react-router-dom";
 
 const DelivaryProfile = (props) => {
   const { id } = props.match.params;
@@ -42,8 +36,6 @@ const DelivaryProfile = (props) => {
       });
   };
 
-
-
   const pastOrdersInfo = async () => {
     const user = jwt_decode(localStorage.getItem("token"));
     axios
@@ -56,8 +48,6 @@ const DelivaryProfile = (props) => {
       });
   };
 
-
-
   const unassignedOrdersInfo = async () => {
     axios
       .get(`http://localhost:5000/unassignedOrders`)
@@ -68,8 +58,6 @@ const DelivaryProfile = (props) => {
         throw err;
       });
   };
-
-
 
   const assigneeOrder = async (infoArgumnt) => {
     const user = jwt_decode(localStorage.getItem("token"));
@@ -84,6 +72,7 @@ const DelivaryProfile = (props) => {
         throw err;
       });
   };
+
   const delvaredOrders = PastOrders.map((e, index) => (
     <li
       className="list-group-item list-group-item-action"
@@ -91,7 +80,7 @@ const DelivaryProfile = (props) => {
       key={index}
     >
       <div>
-        <div className="bg-info">orders_id : {e.orders_id} </div>
+        <div className="col p-1 mb-2 bg-success text-white">orders_id : {e.orders_id} </div>
         <div>
           delivary name : {e.first_name} {e.last_name}
         </div>
@@ -100,26 +89,21 @@ const DelivaryProfile = (props) => {
       </div>
     </li>
   ));
-  
-  
-  
-  const sort=unassignedOrders.sort((a, b) => (a.user_id > b.user_id) ? 1 : -1)
-  console.log('sort',sort);
-  
-  const myUnassignedOrders = sort.map((e, index) => (
+
+  const myUnassignedOrders = unassignedOrders.map((e, index) => (
     <li
       className="list-group-item list-group-item-action"
       num={index + 1}
       key={index}
     >
       <div>
-        <div className="bg-info">orders_id : {e.orders_id} </div>
+        <div className="col p-1 mb-2 bg-success text-white">orders_id : {e.orders_id} </div>
         <div>
           <img
             src={e.picture}
             alt="store pic"
             className="pPic rounded mx-auto d-block"
-          ></img>{" "}
+          ></img>
         </div>
         <div>
           customer name : {e.first_name} {e.last_name}
@@ -127,7 +111,7 @@ const DelivaryProfile = (props) => {
         <div>product name : {e.product_name} </div>
         <div>store name : {e.store_name} </div>
         <button
-          className="btn btn-primary"
+          className="btn btn-primary bg-success text-white"
           onClick={() => assigneeOrder(e.orders_id)}
         >
           accept
@@ -135,55 +119,54 @@ const DelivaryProfile = (props) => {
       </div>
     </li>
   ));
+
   useEffect(() => {
     getDelevaryUser();
     pastOrdersInfo();
     unassignedOrdersInfo();
   }, []);
- 
+
   return (
     <div>
       <h1 className="p-3 mb-2 bg-success text-white">
         {Farstname}'s DelivaryProfile
       </h1>
       <div className="row">
-        <div className="col list-group">
+        <div className="col list-group d-flex">
           <img
             src={userPic}
             alt="profile pic"
             className="pPic row rounded mx-auto d-block"
           ></img>
-          <p className="list-group-item list-group-item-action">
+          <p className="list-group-item list-group-item-action d-flex justify-content-center">
             Address : {Address}
           </p>
-          <p className="list-group-item list-group-item-action">
+          <p className="list-group-item list-group-item-action d-flex justify-content-center">
             First name : {Farstname}
           </p>
-          <p className="list-group-item list-group-item-action">
+          <p className="list-group-item list-group-item-action d-flex justify-content-center">
             Last name:{Lastname}
           </p>
-          <p className="list-group-item list-group-item-action">
+          <p className="list-group-item list-group-item-action d-flex justify-content-center">
             birthday : {doB}
           </p>
-          <p className="list-group-item list-group-item-action">
+          <p className="list-group-item list-group-item-action d-flex justify-content-center">
             email : {email}
           </p>
-          <p className="list-group-item list-group-item-action">
-            {" "}
+          <p className="list-group-item list-group-item-action d-flex justify-content-center">
             Phone Number : {PhoneNumber}
           </p>
         </div>
       </div>
-      <div>
-        {" "}
+      <div className="row" >
+      <div  className="col">
         UnassignedOrders
         <ul>{myUnassignedOrders}</ul>
-      
       </div>
-      <div>
-        {" "}
+      <div className="col">
         past orders
         <ul>{delvaredOrders}</ul>
+      </div>
       </div>
     </div>
   );

@@ -2,6 +2,8 @@ import React, { Component, useState, useEffect } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import StoreProfile from "./StoreProfile";
+import Popup from "reactjs-popup";
+
 import {
   BrowserRouter as Router,
   Route,
@@ -10,7 +12,6 @@ import {
 } from "react-router-dom";
 
 const CSTprofile = (props) => {
-  // const user = jwt_decode(localStorage.getItem("token"));
   const { id } = props.match.params;
   const [userId, setUserId] = useState(id);
   const [Address, setAddress] = useState("");
@@ -27,8 +28,8 @@ const CSTprofile = (props) => {
   const [storeId, setStoreId] = useState("storeid");
   const [userStore, setStore] = useState(["store"]);
   const [isRedirect, setRedirect] = useState(false);
+  
   const getUser = async () => {
-   
     const user = jwt_decode(localStorage.getItem("token"));
     axios
       .get(`http://localhost:5000/users/${user.user_id}`)
@@ -72,7 +73,7 @@ const CSTprofile = (props) => {
         throw err;
       });
   };
-  
+
   const deleteStore = async (infoArgumnt) => {
     axios
       .delete(`http://localhost:5000/store/${infoArgumnt}`)
@@ -86,7 +87,6 @@ const CSTprofile = (props) => {
 
   const getunassignedOrdersInfo = async () => {
     const user = jwt_decode(localStorage.getItem("token"));
-    console.log("user.user_id", user.user_id);
     axios
       .get(`http://localhost:5000/unassignedOrders/${user.user_id}`)
       .then(async (response) => {
@@ -109,14 +109,30 @@ const CSTprofile = (props) => {
       });
   };
 
+  const updatePic = async () => {
+    const data = { image_profile: userPic };
+    const user = jwt_decode(localStorage.getItem("token"));
+    axios
+      .put(`http://localhost:5000/updatePic/${user.user_id}`, data)
+      .then(async (response) => {
+        getunassignedOrdersInfo(userId);
+        getOrdersInfo();
+      })
+      .catch((err) => {
+        throw err;
+      });
+  };
+
   const userUnassignedOrders = Unassigned.map((e, index) => (
     <li
-      className="list-group-item list-group-item-action"
+      className="list-group-item list-group-item-action "
       num={index + 1}
       key={index}
     >
       <div>
-        <div className="bg-info">orders_id : {e.orders_id} </div>
+        <div className=" col p-1 mb-2 bg-success text-white">
+          orders_id : {e.orders_id}{" "}
+        </div>
         <div>
           <img
             src={e.picture}
@@ -127,7 +143,7 @@ const CSTprofile = (props) => {
         <div>product name : {e.product_name} </div>
         <div>store name : {e.store_name} </div>
         <button
-          className="btn btn-primary"
+          className="btn btn-primary bg-success text-white"
           onClick={() => cancelOrder(e.orders_id)}
         >
           cancel order
@@ -138,12 +154,14 @@ const CSTprofile = (props) => {
 
   const userOrders = orders.map((e, index) => (
     <li
-      className="list-group-item list-group-item-action"
+      className="list-group-item list-group-item-action store"
       num={index + 1}
       key={index}
     >
       <div>
-        <div className="bg-info">orders_id : {e.orders_id} </div>
+        <div className=" col p-1 mb-2 bg-success text-white">
+          orders_id : {e.orders_id}{" "}
+        </div>
         <div>
           delivary name : {e.first_name} {e.last_name}
         </div>
@@ -160,7 +178,7 @@ const CSTprofile = (props) => {
       </div>
     </li>
   ));
-  
+
   const userStores = stores.map((e, index) => (
     <li
       className="list-group-item list-group-item-action"
@@ -168,46 +186,77 @@ const CSTprofile = (props) => {
       key={index}
     >
       <button
-        className="btn btn-primary"
+        className="btn btn-primary  bg-success text-white"
         onClick={() => deleteStore(e.store_id)}
       >
-        d
+        X
       </button>
-        <a href={`/store/${e.store_id}`}>
+      <a href={`/store/${e.store_id}`} className="storeLink">
         <div
           onClick={() => {
             setStoreId(e.store_id);
           }}
         >
           <div>store name : {e.store_name} </div>
-          <div className="bg-info">store id : {e.store_id}</div>
+          <div className="col p-1 mb-2 bg-success text-white">
+            store id : {e.store_id}
+          </div>
           <div>store category : {e.store_category} </div>
           <div>
             <img
               src={e.store_pic}
               alt="store pic"
               className="pPic rounded mx-auto d-block"
-            ></img>{" "}
+            ></img>
           </div>
         </div>
-        </a>
+      </a>
     </li>
   ));
+
   useEffect(() => {
     getOrdersInfo();
     getStores();
     getUser();
     getunassignedOrdersInfo();
   }, []);
-  
+
   return (
     <Router>
       <div className="container">
-        <h1 className="navbar navbar-dark bg-primary">{Farstname} profile</h1>
+        {/* <img
+         src={userPic}
+         alt="pic"
+         style={{float:"right",marginTop:"-53px" ,marginRight:"60px",borderRadius:"150px"}} className="headerpPic"
+       ></img> */}
         <div className="row">
           <div className="col list-group">
             <div className="d-flex justify-content-center">
               <img src={userPic} alt="profile pic" className="mPic"></img>
+              <Popup
+                trigger={<button> &#x2710; </button>}
+                position="right center"
+              >
+                {(close) => (
+                  <div>
+                    <div>
+                      insert new picture
+                      <input
+                        placeholder="new URL"
+                        onChange={(e) => setUserPic(e.target.value)}
+                      />
+                    </div>
+                    <button
+                      onClick={() => {
+                        updatePic();
+                        close();
+                      }}
+                    >
+                      done
+                    </button>
+                  </div>
+                )}
+              </Popup>
             </div>
             <div className="d-flex justify-content-center thead-dark display-3">
               {Farstname} {Lastname}
@@ -222,33 +271,31 @@ const CSTprofile = (props) => {
               Last name:{Lastname}
             </p>
             <p className="list-group-item list-group-item-action d-flex justify-content-center">
-              birthday : {doB}
+              Birthday : {doB}
             </p>
             <p className="list-group-item list-group-item-action d-flex justify-content-center">
-              email : {email}
+              Email : {email}
             </p>
             <p className="list-group-item list-group-item-action d-flex justify-content-center">
-              {" "}
               Phone Number : {PhoneNumber}
             </p>
           </div>
           <div className="row ">
-            <div className="col list-group">
+            <div className="col-4 list-group">
               <ul>
                 <p class="thead-dark display-3">
                   {Farstname} Unassigned Orders
                 </p>
-                {userUnassignedOrders}
+                {userUnassignedOrders}{" "}
               </ul>
             </div>
-
-            <div className="col list-group">
+            <div className="col-4 list-group">
               <ul>
                 <p class="thead-dark display-3">{Farstname} orders</p>
                 {userOrders}
               </ul>
             </div>
-            <div className="col list-group">
+            <div className="col-4 list-group">
               <ul>
                 <p className="thead-dark display-3">{Farstname} stores</p>
                 {userStores}

@@ -27,6 +27,7 @@ const AddStore = ({ close, ...props }) => {
         throw error;
       });
   };
+
   const handleChange = (event) => {
     if (event.target.name === "name store") {
       setNameStore(event.target.value);
@@ -60,7 +61,6 @@ const AddStore = ({ close, ...props }) => {
     if (!address.length) {
       errorAddress = "Invalid address";
     }
-
     if (
       errorNameStore ||
       errorPictureStore ||
@@ -74,6 +74,7 @@ const AddStore = ({ close, ...props }) => {
 
       return false;
     }
+
     return true;
   };
 
@@ -84,6 +85,7 @@ const AddStore = ({ close, ...props }) => {
       setErrorPictureStore("");
       setErrorStoreCategory("");
       setErrorAddress("");
+
       const user = jwt_decode(localStorage.getItem("token"));
       const data = {
         user_id: user.user_id,
@@ -122,7 +124,7 @@ const AddStore = ({ close, ...props }) => {
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-default">
-                  Name Store :{" "}
+                  Name Store :
                 </span>
               </div>
               <input
@@ -143,11 +145,10 @@ const AddStore = ({ close, ...props }) => {
                 {errorNameStore}
               </p>
             </div>
-
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-default">
-                  Picture :{" "}
+                  Picture :
                 </span>
               </div>
               <input
@@ -168,14 +169,12 @@ const AddStore = ({ close, ...props }) => {
                 {errorPictureStore}
               </p>
             </div>
-
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <label class="input-group-text" for="inputGroupSelect01">
                   Store Category :
                 </label>
               </div>
-
               <select
                 class="custom-select"
                 name="store category"
@@ -183,8 +182,7 @@ const AddStore = ({ close, ...props }) => {
                 onClick={handleChange}
               >
                 <option value="none" selected="selected">
-                  {" "}
-                  Choose One{" "}
+                  Choose One
                 </option>
                 {getStoreCategory.map((e, key) => {
                   return (
@@ -200,11 +198,10 @@ const AddStore = ({ close, ...props }) => {
                 {errorStoreCategory}
               </p>
             </div>
-
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-default">
-                  Address :{" "}
+                  Address :
                 </span>
               </div>
               <input
@@ -225,7 +222,6 @@ const AddStore = ({ close, ...props }) => {
                 {errorAddress}
               </p>
             </div>
-
             <div class="modal-footer">
               <button
                 type="button"

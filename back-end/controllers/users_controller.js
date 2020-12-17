@@ -18,9 +18,7 @@ const register = async (req, res) => {
     image_profile,
     role_id,
   } = req.body;
-  console.log("SALT", process.env.SALT);
   const hashedPassword = await bcrypt.hash(password, Number(process.env.SALT));
-  console.log(hashedPassword);
   const data = [
     first_name,
     last_name,
@@ -63,6 +61,8 @@ const login = (req, res) => {
           city,
           birhday,
           phone_number,
+          image_profile
+          
         } = result[0];
         const payload = {
           user_id,
@@ -74,6 +74,7 @@ const login = (req, res) => {
           city,
           birhday,
           phone_number,
+          image_profile
         };
         const options = {
           expiresIn: process.env.TOKEN_EXPIRATION,
@@ -81,12 +82,10 @@ const login = (req, res) => {
         const token = jwt.sign(payload, process.env.SECRET, options);
         res.json(token);
       } else {
-        // res.status(422);
-        res.json("Invalid login check your password" );
+        res.json({ error: "Invalid login check your password" });
       }
     } else {
-      // res.status(404);
-      res.json( "Invalid login check your email" );
+      res.json({ error: "Invalid login check your email" });
     }
   });
 };
@@ -111,4 +110,15 @@ const getUserById = (req, res) => {
   });
 };
 
-module.exports = { register, getAllUsers, login, getUserById };
+const updatePic = (req, res) => {
+  const query = `UPDATE users SET image_profile=? WHERE user_id=?`;
+  const data =[req.body.image_profile,req.params.user_id]
+  connection.query(query, data,(err, results) => {
+    if (err) {
+      throw err;
+    }
+    res.json(results);
+  });
+};
+
+module.exports = { register, getAllUsers, login, getUserById,updatePic };

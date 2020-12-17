@@ -101,7 +101,7 @@ const getUnassignedOrdersUser = (req, res) => {
 
 const ordersAndStore = (req, res) => {
     const query =
-        `SELECT orders.delivary_user_id, orders.user_id, orders.orders_id,users.first_name,
+        `SELECT orders.delivary_user_id, orders.user_id, orders.orders_id,orders.product_name,users.first_name,
         users.last_name,orders.store_id ,store.store_name   FROM store 
     INNER JOIN orders ON orders.store_id=store.store_id  
     INNER JOIN users ON orders.delivary_user_id=users.user_id 

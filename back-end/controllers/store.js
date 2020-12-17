@@ -1,6 +1,6 @@
 const connection = require("../db");
 
-const getSroreById = (req, res) => {
+const getSroreById = (req, res) => { 
   const query = `SELECT store_id,store_name from store WHERE user_id=?`;
   const data = [req.params.user_id];
 

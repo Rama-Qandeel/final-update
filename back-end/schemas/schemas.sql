@@ -100,11 +100,11 @@ FOREIGN KEY (user_id) REFERENCES users (user_id),
 //*************************************************/
  CREATE TABLE check_out (
  check_out_id int auto_increment NOT NULL,
- user_id  int,
- orders_id varchar(255),
+ user_id  varchar(255),
+ orders_id int,
  delivary_user_id int,
  is_deleted TINYINT DEFAULT 0,
  PRIMARY KEY (check_out_id),
  FOREIGN KEY (user_id) REFERENCES users (user_id),
-
+ FOREIGN KEY (orders_id) REFERENCES orders (orders_id)
  )

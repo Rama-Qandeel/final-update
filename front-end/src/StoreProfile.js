@@ -35,23 +35,23 @@ const StoreProfile = (props) => {
         throw err;
       });
   };
+
   const storesOrdersbyid = async (infoArgumnt) => {
     axios
       .get(`http://localhost:5000/storesOrders/${infoArgumnt}`)
       .then(async (response) => {
         setStoreOrder(response.data);
-        console.log("response.data 1", response.data);
       })
       .catch((err) => {
         throw err;
       });
   };
+
   const storesProductbyid = async (infoArgumnt) => {
     axios
       .get(`http://localhost:5000/storeproducts/${infoArgumnt}`)
       .then(async (response) => {
         setStoreProducts(response.data);
-        console.log("response.data", response.data);
       })
       .catch((err) => {
         throw err;
@@ -91,14 +91,14 @@ const StoreProfile = (props) => {
 
   const storeOrdersList = storeOrders.map((e, index) => (
     <li
-      className="list-group-item list-group-item-action"
+      className="list-group-item list-group-item-action "
       num={index + 1}
       key={index}
     >
       <div>
-        <div className="bg-info">order number : {index + 1} </div>
-        <div className="bg-info">order id : {e.orders_id} </div>
-        <div>
+       
+        <div className="bg-success text-white">order id : {e.orders_id} </div>
+        <div >
           delivary name : {e.first_name} {e.last_name}
         </div>
         <div>product name : {e.product_name} </div>
@@ -109,14 +109,13 @@ const StoreProfile = (props) => {
 
   const storeProductsList = storeProducts.map((e, index) => (
     <li
-      className="list-group-item list-group-item-action"
+      className="list-group-item list-group-item-action "
       num={index + 1}
       key={index}
     >
       <div>
-        <div className="bg-info">
+        <div className="bg-success text-white">
           product number : {index + 1}
-          <div className="bg-info">product_id : {e.product_id} </div>
           <div className="d-flex justify-content-end">
             <button
               className="btn btn-outline-light"
@@ -156,13 +155,13 @@ const StoreProfile = (props) => {
                 <p>
                   <input
                     onChange={(e) => setAvailableProduct(e.target.value)}
-                    placeholder="is available"
+                    placeholder="is available "
                   />
                 </p>
                 <p>
                   <input
                     onChange={(e) => setPicture(e.target.value)}
-                    placeholder="insert new Picture"
+                    placeholder="new Picture"
                   />
                 </p>
                 <button
@@ -188,31 +187,35 @@ const StoreProfile = (props) => {
       </div>
     </li>
   ));
+
   useEffect(() => {
     getStorebyid(storeId);
     storesOrdersbyid(storeId);
     storesProductbyid(storeId);
   }, []);
+
   return (
     <Router>
       <div>
         <div className="list-group-item list-group-item-action">
-          <h1 className="bg-info">store id :{userStore.store_id}</h1>
-          <div>store name : {userStore.store_name} </div>
-          <div>store category : {userStore.store_category} </div>
-          <div>
-            <img
-              src={userStore.store_pic}
-              alt="store pic"
-              className="pPic rounded mx-auto d-block"
-            ></img>{" "}
-          </div>
-        </div>
+          <h1 className="rounded-pill bg-success">store name : {userStore.store_name}</h1>
         <div>
-          <ul>{storeOrdersList}</ul>
+          <img
+            src={userStore.store_pic}
+            alt="store pic"
+            className="pPic  rounded mx-auto d-block"
+          ></img>
         </div>
-        <div>
+          <div className="list-group-item list-group-item-action d-flex justify-content-center">store id :{userStore.store_id} </div>
+          <div className="list-group-item list-group-item-action d-flex justify-content-center">store category : {userStore.store_category} </div>
+        </div >
+        <div className="row" >
+        <div  className="col p-3 mb-2 bg-success text-white" > {`    |`} store Orders List
+          <ul className="text-white">{storeOrdersList}</ul>
+        </div>
+        <div  className="col p-3 mb-2 bg-success text-white"> {`    |`}  Products List
           <ul>{storeProductsList}</ul>
+        </div>
         </div>
       </div>
     </Router>

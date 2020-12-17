@@ -14,7 +14,6 @@ const AddProduct = ({ close, ...props }) => {
   const [productCategory, setProductCategory] = useState("");
   const [store, setStore] = useState("");
   const [getStoreName, setGetStoreName] = useState([]);
-
   const [errorProductName, setErrorProductName] = useState("");
   const [errorQuantityPerUnit, setErrorQuantityPerUnit] = useState("");
   const [errorPrice, setErrorPrice] = useState("");
@@ -58,7 +57,6 @@ const AddProduct = ({ close, ...props }) => {
     if (!store.length) {
       errorStore = "Invalid store name";
     }
-
     if (
       errorProductName ||
       errorQuantityPerUnit ||
@@ -80,6 +78,7 @@ const AddProduct = ({ close, ...props }) => {
 
       return false;
     }
+
     return true;
   };
 
@@ -93,6 +92,7 @@ const AddProduct = ({ close, ...props }) => {
         throw error;
       });
   };
+
   const getStore = () => {
     const user = jwt_decode(localStorage.getItem("token"));
     axios
@@ -104,6 +104,7 @@ const AddProduct = ({ close, ...props }) => {
         throw error;
       });
   };
+
   useEffect(() => {
     getCategory();
     getStore();
@@ -162,7 +163,6 @@ const AddProduct = ({ close, ...props }) => {
         discount_available: discountAvailable,
         picture: pictureProduct,
       };
-
       axios
         .post("http://localhost:5000/product", data)
         .then((response) => {
@@ -206,7 +206,6 @@ const AddProduct = ({ close, ...props }) => {
                 {errorProductName}
               </spam>
             </div>
-
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-default">
@@ -230,18 +229,15 @@ const AddProduct = ({ close, ...props }) => {
             <spam style={{ fontSize: "12", color: "red", textAlign: "center" }}>
               {errorStore}
             </spam>
-
-            <div class="input-group mb-3">
+            <div class="input-group mb-1">
               <div class="input-group-prepend">
                 <label class="input-group-text" for="inputGroupSelect01">
                   Store Name :
                 </label>
               </div>
-
               <select name="store" id="store" onClick={handleChange}>
                 <option value="none" selected="selected">
-                  {" "}
-                  Choose One{" "}
+                  Choose One
                 </option>
                 {getStoreName.map((e, key) => {
                   return (
@@ -255,18 +251,15 @@ const AddProduct = ({ close, ...props }) => {
             <spam style={{ fontSize: "12", color: "red", textAlign: "center" }}>
               {errorProductCategory}
             </spam>
-
-            <div class="input-group mb-3">
+            <div class="input-group mb-1">
               <div class="input-group-prepend">
                 <label class="input-group-text" for="inputGroupSelect01">
-                  Product Category :{" "}
+                  Product Category :
                 </label>
               </div>
-
               <select name="category" id="category" onClick={handleChange}>
                 <option value="none" selected="selected">
-                  {" "}
-                  Choose One{" "}
+                  Choose One
                 </option>
                 {getproductCategory.map((e, key) => {
                   return (
@@ -277,11 +270,10 @@ const AddProduct = ({ close, ...props }) => {
                 })}
               </select>
             </div>
-
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-default">
-                  Product Descripition :{" "}
+                  Product Descripition :
                 </span>
               </div>
               <input
@@ -300,11 +292,10 @@ const AddProduct = ({ close, ...props }) => {
             <spam style={{ fontSize: "12", color: "red", textAlign: "center" }}>
               {errorQuantityPerUnit}
             </spam>
-
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-default">
-                  Quantity Per Unit :{" "}
+                  Quantity Per Unit :
                 </span>
               </div>
               <input
@@ -320,15 +311,13 @@ const AddProduct = ({ close, ...props }) => {
                 required
               />
             </div>
-
             <spam style={{ fontSize: "12", color: "red", textAlign: "center" }}>
               {errorPrice}
             </spam>
-
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-default">
-                  Price :{" "}
+                  Price :
                 </span>
               </div>
               <input
@@ -347,8 +336,7 @@ const AddProduct = ({ close, ...props }) => {
             <spam style={{ fontSize: "12", color: "red", textAlign: "center" }}>
               {errorAvailableProduct}
             </spam>
-
-            <div class="input-group mb-3">
+            <div class="input-group mb-1">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-default">
                   Available Product
@@ -360,7 +348,6 @@ const AddProduct = ({ close, ...props }) => {
                 onClick={handleChange}
               >
                 <option value="none" selected="selected">
-                  {" "}
                   Select
                 </option>
                 <option value="0">Yes</option>
@@ -370,7 +357,6 @@ const AddProduct = ({ close, ...props }) => {
             <spam style={{ fontSize: "12", color: "red", textAlign: "center" }}>
               {errorDiscountAvailable}
             </spam>
-
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-default">
@@ -389,15 +375,13 @@ const AddProduct = ({ close, ...props }) => {
                 required
               />
             </div>
-
             <spam style={{ fontSize: "12", color: "red", textAlign: "center" }}>
               {errorPictureProduct}
             </spam>
-
             <div class="input-group mb-3">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-default">
-                  Picture :{" "}
+                  Picture :
                 </span>
               </div>
               <input
@@ -413,7 +397,6 @@ const AddProduct = ({ close, ...props }) => {
                 required
               />
             </div>
-
             <div class="modal-footer">
               <button
                 type="button"
